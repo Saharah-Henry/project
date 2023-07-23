@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/app.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500&family=Schibsted+Grotesk&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card card-form">
+        <div class="card-body card-form-body">
+          <form id="search-tab">
+            <input type="search" placeholder="Enter city" id="search-bar" />
+            <input type="submit" value="Search" id="button-submit" />
+          </form>
+          <form id="current-tab">
+            <input type="submit" value="Current" id="button-current" />
+          </form>
+        </div>
+      </div>
+      <br />
+
+      <div class="heading">
+        <div class="card card-heading">
+          <div class="card-body card-heading-body">
+            <h1>Montego Bay</h1>
+            <div class="date" id="date">Mon 3, July</div>
+            <span class="temp" id="temp">☀️ 91</span>
+            <span class="degree">
+              <a href="#" id="celsius">°C</a>
+            </span>
+
+            <div class="weather" id="weather">SUNNY</div>
+            <div class="humidity" id="humidity">Humidity 40%</div>
+            <div class="wind" id="wind">Wind 2%</div>
+            <div class="est_temp" id="est_temp">Feels like 102</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="card card-day">
+            <div class="card-body card-day-body">
+              <h6>Tuesday</h6>
+              <p>
+                ☀️30°/23°<br />
+                💧1%
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="card card-day">
+            <div class="card-body card-day-body">
+              <h6>Wednesday</h6>
+              <p>
+                🌤️35°/23°<br />
+                💧17%
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="card card-day">
+            <div class="card-body card-day-body">
+              <h6>Thursday</h6>
+              <p>
+                🌦️30°/25°<br />
+                💧40%
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="card card-day">
+            <div class="card-body card-day-body">
+              <h6>Friday</h6>
+              <p>
+                🌦️25°/23°<br />
+                💧54%
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="card card-day">
+            <div class="card-body card-day-body">
+              <h6>Saturday</h6>
+              <p>
+                🌥️33°/25°<br />
+                💧23%
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
