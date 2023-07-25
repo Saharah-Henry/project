@@ -62,6 +62,8 @@ searchTab.addEventListener("submit", searchCity);
 
 function currentCity(response) {
   console.log(response);
+  let temperature = document.querySelector("#temp");
+  temperature.innerHTML = Math.round(response.data.temperature.current);
   let weather = document.querySelector("#weather");
   weather.innerHTML = ` ${response.data.condition.description}`;
   let humidity = document.querySelector("#humidity");
@@ -79,6 +81,7 @@ function currentCity(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+  celsiusTemp = response.data.temperature.current;
 }
 function currentCoordinates(position) {
   console.log(position);
@@ -94,6 +97,25 @@ function currentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(currentCoordinates);
 }
+function degreeF(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#temp");
+  let fahrenheitElement = celsiusTemp * 1.8 + 32;
+  temperature.innerHTML = Math.round(fahrenheitElement);
+}
+function degreeC(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#temp");
+  temperature.innerHTML = Math.round(celsiusTemp);
+}
+
+let celsiusTemp = null;
 
 let current = document.querySelector("#current-tab");
 current.addEventListener("submit", currentPosition);
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", degreeF);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", degreeC);
