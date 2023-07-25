@@ -34,9 +34,14 @@ function showTemp(response) {
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = ` Humidity: ${response.data.main.humidity}%`;
   let windspeed = document.querySelector("#wind");
-  windspeed.innerHTML = ` Wind: ${Math.round(response.data.wind.speed)} km/h`;
+  windspeed.innerHTML = ` Wind: ${Math.round(response.data.wind.speed)} m/s`;
   let feel = document.querySelector("#est_temp");
   feel.innerHTML = ` Feels like: ${Math.round(response.data.main.feels_like)}°`;
+  let iconElement = document.querySelector("#weather-icon");
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 function searchCity(event) {
   event.preventDefault();
@@ -62,11 +67,16 @@ function currentCity(response) {
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = ` Humidity: ${response.data.main.humidity}%`;
   let windspeed = document.querySelector("#wind");
-  windspeed.innerHTML = ` Wind: ${Math.round(response.data.wind.speed)} km/h`;
+  windspeed.innerHTML = ` Wind: ${Math.round(response.data.wind.speed)} m/s`;
   let feel = document.querySelector("#est_temp");
   feel.innerHTML = ` Feels like: ${Math.round(response.data.main.feels_like)}°`;
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.name;
+  let iconElement = document.querySelector("#weather-icon");
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 function navGeo(position) {
   let lon = position.coords.longitude;
