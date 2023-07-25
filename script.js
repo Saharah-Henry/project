@@ -32,7 +32,7 @@ function showTemp(response) {
   let weather = document.querySelector("#weather");
   weather.innerHTML = ` ${response.data.condition.description}`;
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = ` Humidity: ${response.data.temperature.humidity}%`;
+  humidity.innerHTML = ` Humidity: ${response.data.temperature.humidity}`;
   let windspeed = document.querySelector("#wind");
   windspeed.innerHTML = ` Wind: ${Math.round(response.data.wind.speed)} m/s`;
   let feel = document.querySelector("#est_temp");
@@ -61,7 +61,6 @@ let searchTab = document.querySelector("#search-tab");
 searchTab.addEventListener("submit", searchCity);
 
 function currentCity(response) {
-  console.log(response);
   let temperature = document.querySelector("#temp");
   temperature.innerHTML = Math.round(response.data.temperature.current);
   let weather = document.querySelector("#weather");
@@ -84,7 +83,6 @@ function currentCity(response) {
   celsiusTemp = response.data.temperature.current;
 }
 function currentCoordinates(position) {
-  console.log(position);
   let lon = position.coords.longitude;
   let lat = position.coords.latitude;
   let apiKey = "664c139fao009ab4f0e6872f57fc202t";
