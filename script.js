@@ -26,21 +26,23 @@ function displayDate() {
 displayDate();
 
 function showTemp(response) {
-  console.log(response.data);
+  console.log(response);
   let temperature = document.querySelector("#temp");
-  temperature.innerHTML = Math.round(response.data.main.temp);
+  temperature.innerHTML = Math.round(response.data.temperature.current);
   let weather = document.querySelector("#weather");
-  weather.innerHTML = ` ${response.data.weather[0].description}`;
+  weather.innerHTML = ` ${response.data.condition.description}`;
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = ` Humidity: ${response.data.main.humidity}%`;
+  humidity.innerHTML = ` Humidity: ${response.data.temperature.humidity}%`;
   let windspeed = document.querySelector("#wind");
   windspeed.innerHTML = ` Wind: ${Math.round(response.data.wind.speed)} m/s`;
   let feel = document.querySelector("#est_temp");
-  feel.innerHTML = ` Feels like: ${Math.round(response.data.main.feels_like)}°`;
+  feel.innerHTML = ` Feels like: ${Math.round(
+    response.data.temperature.feels_like
+  )}°`;
   let iconElement = document.querySelector("#weather-icon");
   iconElement.setAttribute(
     "src",
-    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
 }
 function searchCity(event) {
@@ -50,9 +52,9 @@ function searchCity(event) {
   h1.innerHTML = search.value;
 
   let city = search.value;
-  let apiKey = "f09d3949047ab6c9e3bcaf79cf61f619";
-  let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
-  axios.get(`${apiUrl}${city}&appid=${apiKey}&units=metric`).then(showTemp);
+  let apiKey = "664c139fao009ab4f0e6872f57fc202t";
+  let apiUrl = "https://api.shecodes.io/weather/v1/current?";
+  axios.get(`${apiUrl}query=${city}&key=${apiKey}&units=metric`).then(showTemp);
 }
 
 let searchTab = document.querySelector("#search-tab");
@@ -61,35 +63,38 @@ searchTab.addEventListener("submit", searchCity);
 function currentCity(response) {
   console.log(response);
   let temperature = document.querySelector("#temp");
-  temperature.innerHTML = Math.round(response.data.main.temp);
+  temperature.innerHTML = Math.round(response.data.temperature.current);
   let weather = document.querySelector("#weather");
-  weather.innerHTML = ` ${response.data.weather[0].description}`;
+  weather.innerHTML = ` ${response.data.condition.description}`;
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = ` Humidity: ${response.data.main.humidity}%`;
+  humidity.innerHTML = ` Humidity: ${response.data.temperature.humidity}`;
   let windspeed = document.querySelector("#wind");
   windspeed.innerHTML = ` Wind: ${Math.round(response.data.wind.speed)} m/s`;
   let feel = document.querySelector("#est_temp");
-  feel.innerHTML = ` Feels like: ${Math.round(response.data.main.feels_like)}°`;
+  feel.innerHTML = ` Feels like: ${Math.round(
+    response.data.temperature.feels_like
+  )}°`;
   let h1 = document.querySelector("h1");
-  h1.innerHTML = response.data.name;
+  h1.innerHTML = response.data.city;
   let iconElement = document.querySelector("#weather-icon");
   iconElement.setAttribute(
     "src",
-    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
 }
-function navGeo(position) {
+function currentCoordinates(position) {
+  console.log(position);
   let lon = position.coords.longitude;
   let lat = position.coords.latitude;
-  let apiKey = "f09d3949047ab6c9e3bcaf79cf61f619";
-  let apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
+  let apiKey = "664c139fao009ab4f0e6872f57fc202t";
+  let apiUrl = "https://api.shecodes.io/weather/v1/current?";
   axios
-    .get(`${apiUrl}lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+    .get(`${apiUrl}lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`)
     .then(currentCity);
 }
 function currentPosition(event) {
   event.preventDefault();
-  navigator.geolocation.getCurrentPosition(navGeo);
+  navigator.geolocation.getCurrentPosition(currentCoordinates);
 }
 
 let current = document.querySelector("#current-tab");
