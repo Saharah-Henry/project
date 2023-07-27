@@ -25,9 +25,55 @@ function displayDate() {
 }
 displayDate();
 
-function showTemp(response) {
-  console.log(response);
+function formatDate(date) {
+  let forecastNow = new Date(date * 1000);
+  let day = forecastNow.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
 
+function showForecast(response) {
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+  forecast.forEach(function (forecastday, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
+   <div class="col-2">
+  <div class="forecast-day">${formatDate(forecastday.time)}</div>
+          <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+            forecastday.condition.icon
+          }.png" width="42" id="forecast-icon" />
+          <div class="forecast-temperature">
+            <span class="max-temp-forcast">${Math.round(
+              forecastday.temperature.maximum
+            )}°/</span>
+            <span class="min-temp-forecast">${Math.round(
+              forecastday.temperature.minimum
+            )}°</span>
+          
+          </div>
+      </div>`;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+function getCoordinate(coordinates) {
+  let lon = coordinates.longitude;
+  let lat = coordinates.latitude;
+  let apiKey = "664c139fao009ab4f0e6872f57fc202t";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+  axios.get(`${apiUrl}`).then(showForecast);
+}
+
+function showTemp(response) {
   let temperature = document.querySelector("#temp");
   temperature.innerHTML = Math.round(response.data.temperature.current);
   let weather = document.querySelector("#weather");
@@ -46,6 +92,8 @@ function showTemp(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   celsiusTemp = response.data.temperature.current;
+  console.log(response);
+  getCoordinate(response.data.coordinates);
 }
 function searchCity(event) {
   event.preventDefault();

@@ -1,6 +1,4 @@
 body {
-  display: block;
-  margin: 0 auto;
   background: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
 }
 
@@ -8,14 +6,6 @@ h1 {
   text-transform: capitalize;
   font-size: 21px;
   margin-bottom: 0;
-}
-
-h6 {
-  font-weight: bold;
-}
-p {
-  margin-bottom: 0;
-  font-size: 12px;
 }
 
 .container {
@@ -30,30 +20,20 @@ p {
   position: relative;
 }
 
-.row {
-  justify-content: center;
-  margin: 15px 150px;
-  padding: 0 15px;
-}
-.card-day-body {
-  line-height: 2;
+.weather-forecast {
+  margin-top: 20px;
   text-align: center;
-  color: rgb(13, 11, 136);
-  padding: 17px 1px;
-}
-.card {
-  margin-top: 0;
-  margin-bottom: 0px;
-  border-radius: 5px;
-  border: transparent;
-  background: #e8edf962;
-  transition: all 200ms ease-in-out;
+  width: max-content;
+  display: inline-flex;
 }
 
 .card-heading {
-  margin: 0 210px;
   margin-top: -20px;
   background: #e8edf962;
+  transition: all 200ms ease-in-out;
+}
+.card {
+  border: transparent;
 }
 .card-heading-body {
   text-align: left;
@@ -61,14 +41,10 @@ p {
   margin-left: 0;
 }
 .card-form {
-  margin: 0 110px;
   background: none;
 }
-.card-form-body {
-  margin: 0 auto;
-  display: inherit;
-}
-.card-day:hover {
+
+.col-2:hover {
   cursor: pointer;
   background: transparent;
   transform: scale(1.1);
@@ -120,8 +96,19 @@ p {
   color: black;
 }
 
-.col-sm-2 {
-  padding: 3px;
+.col-2 {
+  margin: 3px;
+  width: fit-content;
+  border-radius: 5px;
+  border: transparent;
+  background: #e8edf962;
+  transition: -webkit-transform 0ms ease-in-out 0s;
+}
+.row {
+  margin: -10px 2px 5px;
+  color: black;
+  font-size: 12;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .degree {
   font-size: 15px;
