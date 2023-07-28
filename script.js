@@ -119,11 +119,50 @@ function degreeC(event) {
 }
 let celsiusTemp = null;
 
-let searchTab = document.querySelector("#search-tab");
-searchTab.addEventListener("submit", searchCity);
+let searchTab = document.querySelector("#search-button");
+searchTab.addEventListener("click", searchCity);
 
 let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", degreeF);
 
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", degreeC);
+
+function currentCity(response) {
+  let temperature = document.querySelector("#temp");
+  temperature.innerHTML = Math.round(response.data.temperature.current);
+  let weather = document.querySelector("#weather");
+  weather.innerHTML = `
+${response.data.condition.description}`;
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = ` Humidity:
+${response.data.temperature.humidity}`;
+  let windspeed = document.querySelector("#wind");
+  windspeed.innerHTML = ` Wind:
+${Math.round(response.data.wind.speed)} m/s`;
+  let feel = document.querySelector("#est_temp");
+  feel.innerHTML = ` Feels like:
+${Math.round(response.data.temperature.feels_like)}°`;
+  let h1 = document.querySelector("h1");
+  h1.innerHTML = response.data.city;
+  let iconElement = document.querySelector("#weather-icon");
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+}
+function currentCoordinates(position) {
+  let lon = position.coords.longitude;
+  let lat = position.coords.latitude;
+  let apiKey = "664c139fao009ab4f0e6872f57fc202t";
+  let apiUrl = "https://api.shecodes.io/weather/v1/current?";
+  axios
+    .get(`${apiUrl}lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`)
+    .then(currentCity);
+}
+function currentPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(currentCoordinates);
+}
+let locationButton = document.querySelector("#location-button");
+locationButton.addEventListener("click", currentPosition);

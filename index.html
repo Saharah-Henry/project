@@ -18,14 +18,31 @@
       rel="stylesheet"
     />
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/64e9fd6c6a.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="container">
       <div class="card card-form">
         <div class="card-body card-form-body">
           <form id="search-tab">
-            <input type="search" placeholder="Enter city" id="search-bar" />
-            <input type="submit" value="Search" id="button-submit" />
+            <div class="input-group">
+              <input
+                type="search"
+                placeholder="Enter city"
+                id="search-bar"
+                class="form-control"
+              />
+
+              <button class="btn btn-outline-secondary" id="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+              <button class="btn btn-outline-secondary" id="location-button">
+                <i class="fa-solid fa-location-dot"></i>
+              </button>
+            </div>
           </form>
         </div>
       </div>
@@ -37,7 +54,7 @@
             <div class="date" id="date">Mon 3, July</div>
             <div class="weather" id="weather">Sunny</div>
             <div class="d-flex mb-3" id="col-temp">
-              <div class="me-auto p-2" id="col-cf">
+              <div class="me-auto p-2" id="col-temp-degree">
                 <img src="" id="weather-icon" />
                 <span class="temp" id="temp"> 91</span>
                 <span class="degree">
@@ -45,7 +62,7 @@
                   <a href="#" id="fahrenheit">°F</a>
                 </span>
               </div>
-              <div class="d-flex flex-column mb-3" id="col-pre">
+              <div class="d-flex flex-column mb-3" id="col-temp-variable">
                 <div class="humidity p-2" id="humidity">Humidity 40%</div>
                 <div class="wind p-2" id="wind">Wind 2 m/s</div>
                 <div class="est_temp p-2" id="est_temp">Feels like 102°</div>
