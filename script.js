@@ -81,7 +81,7 @@ function showTemp(response) {
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = ` Humidity: ${response.data.temperature.humidity}`;
   let windspeed = document.querySelector("#wind");
-  windspeed.innerHTML = ` Wind: ${Math.round(response.data.wind.speed)} m/s`;
+  windspeed.innerHTML = ` Wind: ${Math.round(response.data.wind.speed)} mph`;
   let feel = document.querySelector("#est_temp");
   feel.innerHTML = ` Feels like: ${Math.round(
     response.data.temperature.feels_like
@@ -124,7 +124,7 @@ ${response.data.condition.description}`;
 ${response.data.temperature.humidity}`;
   let windspeed = document.querySelector("#wind");
   windspeed.innerHTML = ` Wind:
-${Math.round(response.data.wind.speed)} m/s`;
+${Math.round(response.data.wind.speed)} mph`;
   let feel = document.querySelector("#est_temp");
   feel.innerHTML = ` Feels like:
 ${Math.round(response.data.temperature.feels_like)}°`;
