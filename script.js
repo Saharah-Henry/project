@@ -69,7 +69,7 @@ function getCoordinate(coordinates) {
   let lon = coordinates.longitude;
   let lat = coordinates.latitude;
   let apiKey = "664c139fao009ab4f0e6872f57fc202t";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=imperial`;
   axios.get(`${apiUrl}`).then(showForecast);
 }
 
@@ -91,8 +91,7 @@ function showTemp(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
-  celsiusTemp = response.data.temperature.current;
-  console.log(response);
+
   getCoordinate(response.data.coordinates);
 }
 function searchCity(event) {
@@ -104,31 +103,17 @@ function searchCity(event) {
   let city = search.value;
   let apiKey = "664c139fao009ab4f0e6872f57fc202t";
   let apiUrl = "https://api.shecodes.io/weather/v1/current?";
-  axios.get(`${apiUrl}query=${city}&key=${apiKey}&units=metric`).then(showTemp);
+  axios
+    .get(`${apiUrl}query=${city}&key=${apiKey}&units=imperial`)
+    .then(showTemp);
 }
-function degreeF(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#temp");
-  let fahrenheitElement = celsiusTemp * 1.8 + 32;
-  temperature.innerHTML = Math.round(fahrenheitElement);
-}
-function degreeC(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#temp");
-  temperature.innerHTML = Math.round(celsiusTemp);
-}
-let celsiusTemp = null;
 
 let searchTab = document.querySelector("#search-button");
 searchTab.addEventListener("click", searchCity);
 
-let fahrenheitLink = document.querySelector("#fahrenheit");
-fahrenheitLink.addEventListener("click", degreeF);
-
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", degreeC);
-
 function currentCity(response) {
+  console.log(response);
+
   let temperature = document.querySelector("#temp");
   temperature.innerHTML = Math.round(response.data.temperature.current);
   let weather = document.querySelector("#weather");
@@ -150,6 +135,8 @@ ${Math.round(response.data.temperature.feels_like)}°`;
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+  let forecastCol = document.querySelector("#forecast");
+  forecastCol.innerHTML = null;
 }
 function currentCoordinates(position) {
   let lon = position.coords.longitude;
@@ -157,12 +144,13 @@ function currentCoordinates(position) {
   let apiKey = "664c139fao009ab4f0e6872f57fc202t";
   let apiUrl = "https://api.shecodes.io/weather/v1/current?";
   axios
-    .get(`${apiUrl}lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`)
+    .get(`${apiUrl}lon=${lon}&lat=${lat}&key=${apiKey}&units=imperial`)
     .then(currentCity);
 }
 function currentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(currentCoordinates);
 }
+
 let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", currentPosition);
