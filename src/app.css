@@ -138,3 +138,15 @@ h1 {
 .forecast-temperature {
   font-size: 12px;
 }
+@media (max-width: 600px) {
+  #col-temp-variable {
+    margin-right: 35px;
+  }
+  .container {
+    margin: 0;
+    border-radius: 0;
+  }
+  .body {
+    margin-left: 0;
+  }
+}
