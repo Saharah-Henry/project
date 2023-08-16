@@ -1,9 +1,11 @@
 function displayDate() {
   let now = new Date();
   let hour = now.getHours();
-  if (hour < 10) {
-    alert(`0${hour}`);
+
+  if (hour > 18) {
+    document.getElementById("img").src = "night 1.jpg";
   }
+
   let minute = now.getMinutes();
   if (minute.toString().length < 2) {
     minute = "0" + minute;

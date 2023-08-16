@@ -112,7 +112,7 @@ h1 {
   margin-left: 21px;
   color: black;
   font-weight: bolder;
-  font-family: "Courier New", Courier, monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .degree {
   font-size: 15px;
@@ -140,6 +140,7 @@ h1 {
 }
 .forecast-temperature {
   font-size: 12px;
+  font-family: "Courier New", Courier, monospace;
 }
 .anim-typewriter {
   animation: typing 3.5s steps(33), blink 1s step-end infinite alternate;
