@@ -75,7 +75,7 @@ function getCoordinate(coordinates) {
 
 function showTemp(response) {
   let temperature = document.querySelector("#temp");
-  temperature.innerHTML = Math.round(response.data.temperature.current);
+  temperature.innerHTML = `${Math.round(response.data.temperature.current)}°`;
   let weather = document.querySelector("#weather");
   weather.innerHTML = ` ${response.data.condition.description}`;
   let humidity = document.querySelector("#humidity");
@@ -115,7 +115,7 @@ function currentCity(response) {
   console.log(response);
 
   let temperature = document.querySelector("#temp");
-  temperature.innerHTML = Math.round(response.data.temperature.current);
+  temperature.innerHTML = `${Math.round(response.data.temperature.current)}°`;
   let weather = document.querySelector("#weather");
   weather.innerHTML = `
 ${response.data.condition.description}`;
