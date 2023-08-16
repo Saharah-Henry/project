@@ -82,7 +82,7 @@ h1 {
 .wind,
 .est_temp {
   font-size: 16px;
-  font-family: monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #search-bar {
@@ -140,6 +140,27 @@ h1 {
 }
 .forecast-temperature {
   font-size: 12px;
+}
+.anim-typewriter {
+  animation: typing 3.5s steps(33), blink 1s step-end infinite alternate;
+  color: black;
+  font-family: monospace;
+  top: 50%;
+  width: 15ch;
+  margin: 0;
+  border-right: 0.2px solid transparent;
+  overflow: hidden;
+  white-space: nowrap;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }
 @media (max-width: 600px) {
   #col-temp-variable {

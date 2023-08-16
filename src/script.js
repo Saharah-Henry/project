@@ -5,10 +5,11 @@ function displayDate() {
     alert(`0${hour}`);
   }
   let minute = now.getMinutes();
-  if (minute < 10) {
-    alert(`0${minute}`);
+  if (minute.toString().length < 2) {
+    minute = "0" + minute;
   }
   let time = `${hour}:${minute}`;
+
   let days = [
     "Sunday",
     "Monday",
